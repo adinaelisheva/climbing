@@ -14,9 +14,9 @@
   <button id="appsWidgetButton"></button>
   <div class="maincontainer">
     <img class="map" src="map.png" />
-    <button class="thirtyseven number red" id="id37" onclick="openLog(37)">37</button>
-    <button class="thirtysix number yellow" id="id36" onclick="openLog(36)">36</button>
-    <button class="thirtyeight number blue" id="id38" onclick="openLog(38)">38</button>
+    <button class="thirtyseven number" id="id37" onclick="openLog(37)">37</button>
+    <button class="thirtysix number" id="id36" onclick="openLog(36)">36</button>
+    <button class="thirtyeight number" id="id38" onclick="openLog(38)">38</button>
     <button class="thirtynine number" id="id39" onclick="openLog(39)">39</button>
     <button class="forty number" id="id40" onclick="openLog(40)">40</button>
     <button class="fortyone number" id="id41" onclick="openLog(41)">41</button>
@@ -28,6 +28,13 @@
     <button class="fiftyone number" id="id51" onclick="openLog(51)">51</button>
     <button class="fiftytwo number" id="id52" onclick="openLog(52)">52</button>
     <button class="fiftythree number" id="id53" onclick="openLog(53)">53</button>
+  </div>
+  <button class="pastclimbs" onclick="openClimbs()">Past climbs</button>
+  <div class="climbs hidden">
+    <div class="overlay" onclick="closeClimbs()"></div>
+    <div class="dialog">
+      <h2 class="title">Past Climbs</h2>
+    </div>
   </div>
   <div class="log hidden">
     <div class="overlay" onclick="closeLog()"></div>
@@ -62,7 +69,7 @@
         </div>
       </div>
       <div class="row">
-        <input type="submit" />
+        <input type="submit" onclick="submitLog()" />
       </div>
     </div>
   </div>

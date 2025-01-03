@@ -11,6 +11,20 @@ img.map {
   height: 750px;
 }
 
+button.pastclimbs {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 10;
+  border: 5px solid #52c7d3;
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+  font-weight: bold;
+  font-size: 20px;
+  color: #0096a6;
+}
+
 .number {
   position: absolute;
   z-index: 10;
@@ -26,7 +40,7 @@ img.map {
   background: #ccc;
 }
 
-.log .dialog {
+.dialog {
   position: fixed;
   padding: 20px;
   top: 40px;
@@ -38,7 +52,7 @@ img.map {
   border: 5px solid #c1c1c1;
 }
 
-.log .overlay {
+.overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -47,11 +61,11 @@ img.map {
   z-index: 15;
 }
 
-.log.hidden {
+.log.hidden, .climbs.hidden {
   display: none;
 }
 
-.log h3 {
+h2, h3 {
   text-align: center;
 }
 
