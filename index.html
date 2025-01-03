@@ -14,51 +14,56 @@
   <button id="appsWidgetButton"></button>
   <div class="maincontainer">
     <img class="map" src="map.png" />
-    <button class="thirtyseven number" id="37">37</button>
-    <button class="thirtysix number" id="36">36</button>
-    <button class="thirtyeight number" id="38">38</button>
-    <button class="thirtynine number" id="39">39</button>
-    <button class="forty number" id="40">40</button>
-    <button class="fortyone number" id="41">41</button>
-    <button class="fortytwo number" id="42">42</button>
-    <button class="fortyseven number" id="47">47</button>
-    <button class="fortyeight number" id="48">48</button>
-    <button class="fortynine number" id="49">49</button>
-    <button class="fifty number" id="50">50</button>
-    <button class="fiftyone number" id="51">51</button>
-    <button class="fiftytwo number" id="52">52</button>
-    <button class="fiftythree number" id="53">53</button>
+    <button class="thirtyseven number red" id="id37" onclick="openLog(37)">37</button>
+    <button class="thirtysix number yellow" id="id36" onclick="openLog(36)">36</button>
+    <button class="thirtyeight number blue" id="id38" onclick="openLog(38)">38</button>
+    <button class="thirtynine number" id="id39" onclick="openLog(39)">39</button>
+    <button class="forty number" id="id40" onclick="openLog(40)">40</button>
+    <button class="fortyone number" id="id41" onclick="openLog(41)">41</button>
+    <button class="fortytwo number" id="id42" onclick="openLog(42)">42</button>
+    <button class="fortyseven number" id="id47" onclick="openLog(47)">47</button>
+    <button class="fortyeight number" id="id48" onclick="openLog(48)">48</button>
+    <button class="fortynine number" id="id49" onclick="openLog(49)">49</button>
+    <button class="fifty number" id="id50" onclick="openLog(50)">50</button>
+    <button class="fiftyone number" id="id51" onclick="openLog(51)">51</button>
+    <button class="fiftytwo number" id="id52" onclick="openLog(52)">52</button>
+    <button class="fiftythree number" id="id53" onclick="openLog(53)">53</button>
   </div>
   <div class="log hidden">
-    <h3 class="title">Route <span class="lognum">XY</span></h3>
-    <div class="row">
-      <input type="date" class="date" />
-      <div class="labeledInput">
-        With: <input type="text" class="companions" />
+    <div class="overlay" onclick="closeLog()"></div>
+    <div class="dialog">
+      <h3 class="title">Route <span class="lognum">XY</span></h3>
+      <div class="row">
+        <input type="date" class="date" />
+        <div class="labeledInput">
+          With: <input type="text" class="companions" />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="labeledInput">
-        Color: <input type="text" class="color" />
+      <div class="perRouteValues">
+        <div class="row">
+          <div class="labeledInput">
+            Color: <input type="text" class="color" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="labeledInput">
+            Difficulty: 5.<input type="text" class="difficulty" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="labeledInput">
+            % climbed: <input type="text" class="pct" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="labeledInput">
+            Notes: <input type="text" class="notes" />
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="labeledInput">
-        Difficulty: <input type="text" class="difficulty" />
+      <div class="row">
+        <input type="submit" />
       </div>
-    </div>
-    <div class="row">
-      <div class="labeledInput">
-        % climbed: <input type="text" class="pct" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="labeledInput">
-        Notes: <input type="text" class="notes" />
-      </div>
-    </div>
-    <div class="row">
-      <input type="submit" />
     </div>
   </div>
 </body>
