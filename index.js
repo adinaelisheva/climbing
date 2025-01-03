@@ -123,7 +123,7 @@ function updateRoute(routenum, color, difficulty) {
     return;
   }
 
-  fetchEndpoint('update', `routenum=${routenum}&color=${color}&difficulty=${difficulty}`);
+  hitEndpoint('update', `routenum=${routenum}&color=${color}&difficulty=${difficulty}`);
 }
 
 function logClimb(routenum, date, pct, companions, notes) {
@@ -131,10 +131,14 @@ function logClimb(routenum, date, pct, companions, notes) {
     // console.log(`routenum (${routenum}), date (${date}), and pct (${pct}) must all be defined to log a climb`);
     return;
   }
-  fetchEndpoint('logclimb', `routenum=${routenum}&date=${date}&pct=${pct}&companions=${companions}&notes=${notes}`);
+  hitEndpoint('logclimb', `routenum=${routenum}&date=${date}&pct=${pct}&companions=${companions}&notes=${notes}`);
 }
 
 async function fetchEndpoint(endpoint, body) {
+  return JSON.parse(hitEndpoint(endpoint, body));
+}
+
+async function hitEndpoint(endpoint, body) {
   // console.log(`fetching ${endpoint}`);
   const response = await fetch(`/climbing/${endpoint}.php`, {
     headers: {
@@ -145,7 +149,7 @@ async function fetchEndpoint(endpoint, body) {
   });
   const responseBody = await response.text();
   // console.log(responseBody);
-  return JSON.parse(responseBody);
+  return responseBody;
 }
 
 function getColorFromClasslist(div) {
