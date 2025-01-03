@@ -135,7 +135,8 @@ function logClimb(routenum, date, pct, companions, notes) {
 }
 
 async function fetchEndpoint(endpoint, body) {
-  return JSON.parse(hitEndpoint(endpoint, body));
+  const response = await hitEndpoint(endpoint, body);
+  return JSON.parse(response);
 }
 
 async function hitEndpoint(endpoint, body) {
