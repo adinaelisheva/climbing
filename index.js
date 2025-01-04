@@ -141,9 +141,9 @@ function addClimbToClimbsDialog() {
   let container = document.querySelector(`[date='${dateInput.value}'`);
   if (!container) {
     container = createClimbsDateContainer(dateInput.value, companionsInput.value);
+    const nextSibling = document.querySelector('.climbs .dialog > div');
+    nextSibling.parentNode.insertBefore(container, nextSibling);
   }
-  const nextSibling = document.querySelector('.climbs .dialog > div');
-  nextSibling.parentNode.insertBefore(container, nextSibling);
   createAndAppendClimb(container, colorInput.value, difficultyInput.value, numSpan.innerText, pctInput.value, notesInput.value);
 }
 
