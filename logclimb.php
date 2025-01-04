@@ -42,7 +42,7 @@
     $notes = mysqli_real_escape_string($db, $_POST["notes"]);
   }
   
-  $sql = "INSERT INTO climbs (routenum, date, pct, color, difficulty, companions, notes) VALUES ($routenum, '$datestr', '$color', '$difficulty', $pct, '$companions', '$notes');";
+  $sql = "INSERT INTO climbs (routenum, date, pct, color, difficulty, companions, notes) VALUES ($routenum, '$datestr', $pct, '$color', '$difficulty', '$companions', '$notes');";
  
   echo("SQL: $sql ");
   

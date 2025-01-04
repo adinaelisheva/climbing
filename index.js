@@ -83,7 +83,6 @@ function closeLog() {
 
 async function fetchAndUpdateClimbs() {
   const climbs = await fetchEndpoint('fetchclimbs');
-  const dialogDiv = climbsDiv.querySelector('.dialog');
   const climbsByDate = {};
   for (c of climbs) {
     dateIndex = Number(c.date.replaceAll('-',''));
@@ -94,21 +93,32 @@ async function fetchAndUpdateClimbs() {
   }
   for(let k of Object.keys(climbsByDate).sort().reverse()) {
     const climb = climbsByDate[k];
-    const h = document.createElement('h3');
-    // Switch from yyyy-mm-dd to mm/dd
-    const dateStr = climb.date.substring(c.date.indexOf('-') + 1).replace('-','/');
-    h.innerText = `${dateStr} (${climb.companions})`
-    dialogDiv.appendChild(h);
+    const container = createClimbsDateContainer(climb.date, climb.companions);
+    climbsDiv.querySelector('.dialog').appendChild(container);
     for (let c of climb.climbs) {
-      const d = document.createElement('div');
-      // TODO - log the route color + difficulty too bc it'll change
-      d.innerText = `${c.color} 5.${c.difficulty} (${c.routenum}): ${c.pct}%`;
-      if (c.notes) {
-        d.innerText += ` - ${c.notes}`;
-      }
-      dialogDiv.appendChild(d);
+      createAndAppendClimb(container, c.color, c.difficulty, c.routenum, c.pct, c.notes)
     }
   }
+}
+
+function createClimbsDateContainer(date, companions) {
+  const container = document.createElement('div');
+  container.setAttribute('date', date);
+  const h = document.createElement('h3');
+  // Switch from yyyy-mm-dd to mm/dd
+  const dateStr = date.substring(date.indexOf('-') + 1).replace('-','/');
+  h.innerText = `${dateStr} (${companions})`
+  container.appendChild(h);
+  return container;
+}
+
+function createAndAppendClimb(container, color, difficulty, routenum, pct, notes) {
+  const d = document.createElement('div');
+  d.innerText = `${color} 5.${difficulty} (${routenum}): ${pct}%`;
+  if (notes) {
+    d.innerText += ` - ${notes}`;
+  }
+  container.appendChild(d);
 }
 
 async function fetchAndUpdateRouteInfo() {
@@ -123,7 +133,18 @@ async function fetchAndUpdateRouteInfo() {
 
 function submitLog() {
   logClimb(numSpan.innerText, dateInput.value, pctInput.value, colorInput.value, difficultyInput.value, companionsInput.value, notesInput.value);
+  addClimbToClimbsDialog();
   closeLog();
+}
+
+function addClimbToClimbsDialog() {
+  let container = document.querySelector(`[date='${dateInput.value}'`);
+  if (!container) {
+    container = createClimbsDateContainer(dateInput.value, companionsInput.value);
+  }
+  const nextSibling = document.querySelector('.climbs .dialog > div');
+  nextSibling.parentNode.insertBefore(container, nextSibling);
+  createAndAppendClimb(container, colorInput.value, difficultyInput.value, numSpan.innerText, pctInput.value, notesInput.value);
 }
 
 function updateRoute(routenum, color, difficulty) {
@@ -140,7 +161,14 @@ function logClimb(routenum, date, pct, color, difficulty, companions, notes) {
     console.log(`routenum (${routenum}), date (${date}), pct (${pct}), color (${color}), and difficulty (${difficulty}) must all be defined to log a climb`);
     return;
   }
-  hitEndpoint('logclimb', `routenum=${routenum}&date=${date}&pct=${pct}&color=${color}&difficulty=${difficulty}&companions=${companions}&notes=${notes}`);
+  let body = `routenum=${routenum}&date=${date}&pct=${pct}&color=${color}&difficulty=${difficulty}`;
+  if (companions) {
+    body += `&companions=${companions}`;
+  }
+  if (notes) {
+    body += `&notes=${notes}`;
+  }
+  hitEndpoint('logclimb', body);
 }
 
 async function fetchEndpoint(endpoint, body) {
@@ -150,12 +178,15 @@ async function fetchEndpoint(endpoint, body) {
 
 async function hitEndpoint(endpoint, body) {
   // console.log(`fetching ${endpoint}`);
+  if (body) {
+    body = body.replaceAll('+', '%2B');
+  }
   const response = await fetch(`/climbing/${endpoint}.php`, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     method: "POST",
-    body: encodeURIComponent(body),
+    body: body,
   });
   const responseBody = await response.text();
   let error;
