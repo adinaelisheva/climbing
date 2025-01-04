@@ -92,10 +92,12 @@ async function fetchAndUpdateClimbs() {
     }
     climbsByDate[dateIndex].climbs.push({routenum: c.routenum, pct: c.pct, notes: c.notes, color: c.color, difficulty: c.difficulty});
   }
-  for(let k of Object.keys(climbsByDate).sort()) {
+  for(let k of Object.keys(climbsByDate).sort().reverse()) {
     const climb = climbsByDate[k];
     const h = document.createElement('h3');
-    h.innerText = `${climb.date} (${climb.companions})`
+    // Switch from yyyy-mm-dd to mm/dd
+    const dateStr = climb.date.substring(c.date.indexOf('-') + 1).replace('-','/');
+    h.innerText = `${dateStr} (${climb.companions})`
     dialogDiv.appendChild(h);
     for (let c of climb.climbs) {
       const d = document.createElement('div');

@@ -62,6 +62,15 @@ button.pastclimbs {
   z-index: 15;
 }
 
+.climbs .dialog {
+  bottom: 40px;
+  overflow: auto;
+}
+
+.climbs h3 {
+  text-align: start;
+}
+
 .dialog, .dialog input {
   font-size: 24px;
 }
@@ -72,6 +81,10 @@ button.pastclimbs {
 
 h2, h3 {
   text-align: center;
+}
+
+h2 {
+  margin-top: 0;
 }
 
 .row, .labeledInput {
