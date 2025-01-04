@@ -17,6 +17,11 @@ function setup() {
   companionsInput = logDiv.querySelector('input.companions');
   notesInput = logDiv.querySelector('input.notes');
   dateInput.value = getTodayDateString();
+
+  const companionsCookie = getCookie('companions');
+  if (companionsCookie) {
+    companionsInput.value = companionsCookie;
+  }
 }
 
 function openClimbs() {
@@ -65,6 +70,9 @@ function closeLog() {
   if (newColor !== logDiv.getAttribute('originalColor') ||
       newDiff !== logDiv.getAttribute('originalDifficulty')) {
     updateRoute(routeNum, newColor, newDiff);
+  }
+  if (companionsInput.value) {
+    document.cookie = `companions=${companionsInput.value};max-age=21600`; // 6 hours 
   }
   logDiv.classList.add('hidden');
   const inputsToReset = perRouteSection.querySelectorAll('input');
@@ -170,6 +178,13 @@ function getTodayDateString() {
   let date = `${d.getDate()}`;
   if (date.length === 1) { date = `0${date}`; }
   return `${d.getFullYear()}-${month}-${date}`;
+}
+
+function getCookie(key) {
+  return document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${key}=`))
+    ?.split("=")[1];
 }
 
 window.onload = setup;
