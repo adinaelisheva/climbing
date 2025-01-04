@@ -25,6 +25,14 @@
     $pct = $_POST["pct"];
   }
   if (empty($pct)) die('{"Error":"pct cannot be empty"}');
+  if (isset($_POST["color"])) {
+    $color = mysqli_real_escape_string($db, $_POST["color"]);
+  }
+  if (empty($color)) die('{"Error":"color cannot be empty"}');
+  if (isset($_POST["difficulty"])) {
+    $difficulty = $_POST["difficulty"];
+  }
+  if (empty($difficulty)) die('{"Error":"difficulty cannot be empty"}');
   $companions = "";
   if (isset($_POST["companions"])) {
     $companions = mysqli_real_escape_string($db, $_POST["companions"]);
@@ -34,8 +42,7 @@
     $notes = mysqli_real_escape_string($db, $_POST["notes"]);
   }
   
-  // TODO - log the route color + difficulty too bc it'll change
-  $sql = "INSERT INTO climbs (routenum, date, pct, companions, notes) VALUES ($routenum, '$datestr', $pct, '$companions', '$notes');";
+  $sql = "INSERT INTO climbs (routenum, date, pct, color, difficulty, companions, notes) VALUES ($routenum, '$datestr', '$color', $difficulty, $pct, '$companions', '$notes');";
  
   echo("SQL: $sql ");
   

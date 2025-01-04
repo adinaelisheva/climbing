@@ -90,7 +90,7 @@ async function fetchAndUpdateClimbs() {
     if (!climbsByDate[dateIndex]) {
       climbsByDate[dateIndex] = {date: c.date, companions: c.companions, climbs: []};
     }
-    climbsByDate[dateIndex].climbs.push({routenum: c.routenum, pct: c.pct, notes: c.notes});
+    climbsByDate[dateIndex].climbs.push({routenum: c.routenum, pct: c.pct, notes: c.notes, color: c.color, difficulty: c.difficulty});
   }
   for(let k of Object.keys(climbsByDate).sort()) {
     const climb = climbsByDate[k];
@@ -100,7 +100,7 @@ async function fetchAndUpdateClimbs() {
     for (let c of climb.climbs) {
       const d = document.createElement('div');
       // TODO - log the route color + difficulty too bc it'll change
-      d.innerText = `[Color] [diff] (${c.routenum}): ${c.pct}%`;
+      d.innerText = `${c.color} 5.${c.difficulty} (${c.routenum}): ${c.pct}%`;
       if (c.notes) {
         d.innerText += ` - ${c.notes}`;
       }
@@ -120,8 +120,7 @@ async function fetchAndUpdateRouteInfo() {
 }
 
 function submitLog() {
-  // TODO - log the route color + difficulty too bc it'll change
-  logClimb(numSpan.innerText, dateInput.value, pctInput.value, companionsInput.value, notesInput.value);
+  logClimb(numSpan.innerText, dateInput.value, pctInput.value, colorInput.value, difficultyInput.value, companionsInput.value, notesInput.value);
   closeLog();
 }
 
@@ -134,12 +133,12 @@ function updateRoute(routenum, color, difficulty) {
   hitEndpoint('update', `routenum=${routenum}&color=${color}&difficulty=${difficulty}`);
 }
 
-function logClimb(routenum, date, pct, companions, notes) {
-  if (!routenum || !date || !pct) {
-    // console.log(`routenum (${routenum}), date (${date}), and pct (${pct}) must all be defined to log a climb`);
+function logClimb(routenum, date, pct, color, difficulty, companions, notes) {
+  if (!routenum || !date || !pct || !color || !difficulty) {
+    // console.log(`routenum (${routenum}), date (${date}), pct (${pct}), color (${color}), and difficulty (${difficulty}) must all be defined to log a climb`);
     return;
   }
-  hitEndpoint('logclimb', `routenum=${routenum}&date=${date}&pct=${pct}&companions=${companions}&notes=${notes}`);
+  hitEndpoint('logclimb', `routenum=${routenum}&date=${date}&pct=${pct}&color=${color}&difficulty=${difficulty}&companions=${companions}&notes=${notes}`);
 }
 
 async function fetchEndpoint(endpoint, body) {
