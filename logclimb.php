@@ -30,7 +30,7 @@
   }
   if (empty($color)) die('{"Error":"color cannot be empty"}');
   if (isset($_POST["difficulty"])) {
-    $difficulty = $_POST["difficulty"];
+    $difficulty = mysqli_real_escape_string($db, $_POST["difficulty"]);
   }
   if (empty($difficulty)) die('{"Error":"difficulty cannot be empty"}');
   $companions = "";
@@ -42,7 +42,7 @@
     $notes = mysqli_real_escape_string($db, $_POST["notes"]);
   }
   
-  $sql = "INSERT INTO climbs (routenum, date, pct, color, difficulty, companions, notes) VALUES ($routenum, '$datestr', '$color', $difficulty, $pct, '$companions', '$notes');";
+  $sql = "INSERT INTO climbs (routenum, date, pct, color, difficulty, companions, notes) VALUES ($routenum, '$datestr', '$color', '$difficulty', $pct, '$companions', '$notes');";
  
   echo("SQL: $sql ");
   

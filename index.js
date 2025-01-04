@@ -128,7 +128,7 @@ function submitLog() {
 
 function updateRoute(routenum, color, difficulty) {
   if (!routenum || !color || !difficulty) {
-    // console.log(`routenum (${routenum}), color (${color}), and difficulty (${difficulty}) must all be defined to update a route`);
+    console.log(`routenum (${routenum}), color (${color}), and difficulty (${difficulty}) must all be defined to update a route`);
     return;
   }
 
@@ -137,7 +137,7 @@ function updateRoute(routenum, color, difficulty) {
 
 function logClimb(routenum, date, pct, color, difficulty, companions, notes) {
   if (!routenum || !date || !pct || !color || !difficulty) {
-    // console.log(`routenum (${routenum}), date (${date}), pct (${pct}), color (${color}), and difficulty (${difficulty}) must all be defined to log a climb`);
+    console.log(`routenum (${routenum}), date (${date}), pct (${pct}), color (${color}), and difficulty (${difficulty}) must all be defined to log a climb`);
     return;
   }
   hitEndpoint('logclimb', `routenum=${routenum}&date=${date}&pct=${pct}&color=${color}&difficulty=${difficulty}&companions=${companions}&notes=${notes}`);
@@ -155,9 +155,18 @@ async function hitEndpoint(endpoint, body) {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     method: "POST",
-    body: body,
+    body: encodeURIComponent(body),
   });
   const responseBody = await response.text();
+  let error;
+  // No guarantee the response will be JSON parseable, but an error should be
+  try {
+    const parsed = JSON.parse(responseBody);
+    error = parsed.Error;
+  } catch {}
+  if (error) {
+    console.log(`Server Error: ${error}`);
+  }
   // console.log(responseBody);
   return responseBody;
 }

@@ -19,7 +19,7 @@
   }
   if (empty($color)) die('{"Error":"color cannot be empty"}');
   if (isset($_POST["difficulty"])) {
-    $difficulty = $_POST["difficulty"];
+    $difficulty = mysqli_real_escape_string($db, $_POST["difficulty"]);
   }
   if (empty($difficulty)) die('{"Error":"difficulty cannot be empty"}');
   
