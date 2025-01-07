@@ -185,38 +185,89 @@ input.notes, input.companions {
 }
 
 /* Number positioning */
+.eighteen {
+  top: 737px;
+  left: 320px;
+}
+
+.nineteen {
+  top: 729px;
+  left: 288px;
+}
+
+.twenty {
+  top: 700px;
+  left: 270px;
+}
+
+.twentyeight {
+  top: 552px;
+  left: 307px;
+}
+
+.twentynine {
+  top: 543px;
+  left: 341px;
+}
+
+.thirty {
+  top: 509px;
+  left: 374px;
+}
+
+.thirtyone {
+  top: 473px;
+  left: 400px;
+}
+
+.thirtyfive {
+  top: 233px;
+  left: 270px;
+}
+
 .thirtysix {
-  top: 69px;
-  left: 312px;
-}
-.thirtyseven {
-  top: 70px;
-  left: 280px;
-}
-
-.thirtyeight {
-  top: 106px;
-  left: 254px;
-}
-
-.thirtynine {
-  top: 139px;
-  left: 260px;
-}
-
-.forty {
-  top: 169px;
-  left: 276px;
-}
-
-.fortyone {
   top: 201px;
   left: 270px;
 }
 
+.thirtyseven {
+  top: 169px;
+  left: 276px;
+}
+
+.thirtyeight {
+  top: 139px;
+  left: 260px;
+}
+
+.thirtynine {
+  top: 106px;
+  left: 254px;
+}
+
+.forty {
+  top: 70px;
+  left: 280px;
+}
+
+.fortyone {
+  top: 69px;
+  left: 312px;
+}
+
 .fortytwo {
-  top: 233px;
-  left: 270px;
+  top: 100px;
+  left: 340px;
+}
+
+.fortythree {
+  top: 134px;
+  left: 346px;
+}
+
+.fortyfour {
+  top: 168px;
+  left: 351px;
 }
 
 .fortyseven {
@@ -252,4 +303,44 @@ input.notes, input.companions {
 .fiftythree {
   top: 240px;
   left: 138px;
+}
+
+.fiftyfour {
+  top: 273px;
+  left: 154px;
+}
+
+.fiftyfive {
+  top: 306px;
+  left: 152px;
+}
+
+.sixtyfive {
+  top: 500px;
+  left: 13px;
+}
+
+.sixtysix {
+  top: 540px;
+  left: 13px;
+}
+
+.sixtyseven {
+  top: 581px;
+  left: 17px;
+}
+
+.sixtyeight {
+  top: 620px;
+  left: 21px;
+}
+
+.sixtynine {
+  top: 660px;
+  left: 29px;
+}
+
+.seventy {
+  top: 700px;
+  left: 33px;
 }

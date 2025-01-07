@@ -60,7 +60,7 @@ function closeLog() {
   if (newColor) {
     const curColor = getColorFromClasslist(routeDiv);
     if (curColor && curColor !== newColor) {
-      colorInput.classList.remove(curColor);
+      routeDiv.classList.remove(curColor);
     }
     routeDiv.classList.add(newColor);
   }
