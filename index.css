@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   font-size: 20px;
+  margin: 0;
 }
 
 .maincontainer {
@@ -14,7 +15,7 @@ img.map {
 
 button.pastclimbs {
   position: fixed;
-  right: 10px;
+  left: 358px;
   bottom: 10px;
   z-index: 10;
   border: 5px solid #52c7d3;
@@ -43,6 +44,7 @@ button.pastclimbs {
 
 .dialog {
   position: fixed;
+  max-width: 500px;
   padding: 20px;
   top: 40px;
   left: 40px;
