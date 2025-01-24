@@ -156,12 +156,19 @@ function addClimbToClimbsDialog() {
 }
 
 function updateRoute(routenum, color, difficulty) {
-  if (!routenum || !color || !difficulty) {
-    console.log(`routenum (${routenum}), color (${color}), and difficulty (${difficulty}) must all be defined to update a route`);
+  if (!routenum || (!color && !difficulty)) {
+    console.log(`routenum (${routenum}) plus color (${color}) or difficulty (${difficulty}) must be defined to update a route`);
     return;
   }
 
-  hitEndpoint('update', `routenum=${routenum}&color=${color}&difficulty=${difficulty}`);
+  let body = `routenum=${routenum}`;
+  if (color) {
+    body += `&color=${color}`;
+  }
+  if (difficulty) {
+    body += `&difficulty=${difficulty}`;
+  }
+  hitEndpoint('update', body);
 }
 
 function logClimb(routenum, date, pct, color, difficulty, companions, notes) {

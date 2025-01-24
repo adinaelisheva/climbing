@@ -17,13 +17,23 @@
   if (isset($_POST["color"])) {
     $color = mysqli_real_escape_string($db, $_POST["color"]);
   }
-  if (empty($color)) die('{"Error":"color cannot be empty"}');
   if (isset($_POST["difficulty"])) {
     $difficulty = mysqli_real_escape_string($db, $_POST["difficulty"]);
   }
-  if (empty($difficulty)) die('{"Error":"difficulty cannot be empty"}');
+  if (empty($difficulty) && empty($color)) die('{"Error":"difficulty and color cannot both be empty"}');
   
-  $sql = "UPDATE routes SET `color`='$color',`difficulty`='$difficulty' WHERE `routenum`='$routenum';";
+  $toSet = "";
+  if (!empty($color)) {
+    $toSet = "`color`='$color'";
+  }
+  if (!empty($color) && !empty($difficulty)) {
+    $toSet = $toSet . ",";
+  }
+  if (!empty($difficulty)) {
+    $toSet = "`difficulty`='$difficulty'";
+  }
+
+  $sql = "UPDATE routes SET $toSet WHERE `routenum`='$routenum';";
  
   echo("SQL: $sql ");
   
