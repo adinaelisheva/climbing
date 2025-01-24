@@ -1,4 +1,4 @@
-let climbsDiv, logDiv, numSpan, dateInput, perRouteSection, colorInput, difficultyInput, pctInput, companionsInput, notesInput;
+let climbsDiv, logDiv, numSpan, dateInput, colorInput, difficultyInput, pctInput, companionsInput, notesInput;
 
 function setup() {
   fetchAndUpdateRouteInfo();
@@ -6,17 +6,18 @@ function setup() {
 
   climbsDiv = document.querySelector('.climbs');
 
+  const headerDiv = document.querySelector('.header');
+  dateInput = headerDiv.querySelector('input[type="date"]');
+  companionsInput = headerDiv.querySelector('input.companions');
+  dateInput.value = getTodayDateString();
+
   // Set up logging
   logDiv = document.querySelector('.log');
   numSpan = logDiv.querySelector('.lognum');
-  dateInput = logDiv.querySelector('input[type="date"]');
-  perRouteSection = logDiv.querySelector('.perRouteValues');
   colorInput = logDiv.querySelector('input.color');
   difficultyInput = logDiv.querySelector('input.difficulty');
   pctInput = logDiv.querySelector('input.pct');
-  companionsInput = logDiv.querySelector('input.companions');
   notesInput = logDiv.querySelector('input.notes');
-  dateInput.value = getTodayDateString();
 
   const companionsCookie = getCookie('companions');
   if (companionsCookie) {
@@ -75,7 +76,7 @@ function closeLog() {
     document.cookie = `companions=${companionsInput.value};max-age=21600`; // 6 hours 
   }
   logDiv.classList.add('hidden');
-  const inputsToReset = perRouteSection.querySelectorAll('input');
+  const inputsToReset = logDiv.querySelectorAll('input:not([type="submit"])');
   for (const i of inputsToReset) {
     i.value = '';
   }
@@ -113,11 +114,18 @@ function createClimbsDateContainer(date, companions) {
 }
 
 function createAndAppendClimb(container, color, difficulty, routenum, pct, notes) {
+  const s = document.createElement('span');
+  s.classList.add('title');
+  s.classList.add(color);
+  s.innerText = `${routenum} (5.${difficulty})`;
   const d = document.createElement('div');
-  d.innerText = `${color} 5.${difficulty} (${routenum}): ${pct}%`;
+  d.appendChild(s);
+  const s2 = document.createElement('span');
+  s2.innerText = `: ${pct}%`;
   if (notes) {
-    d.innerText += ` - ${notes}`;
+    s2.innerText += ` - ${notes}`;
   }
+  d.appendChild(s2);
   container.appendChild(d);
 }
 
@@ -177,7 +185,7 @@ async function fetchEndpoint(endpoint, body) {
 }
 
 async function hitEndpoint(endpoint, body) {
-  // console.log(`fetching ${endpoint}`);
+  console.log(`fetching ${endpoint} with ${body}`);
   if (body) {
     body = body.replaceAll('+', '%2B');
   }

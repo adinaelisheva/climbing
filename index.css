@@ -2,10 +2,41 @@ body {
   font-family: sans-serif;
   font-size: 20px;
   margin: 0;
+  background: #d3edf1;
 }
 
 .maincontainer {
+  width: 100%;
   position: relative;
+}
+
+.header {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 44px;
+}
+
+.header .companionsContainer {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.header .companionsContainer input {
+  width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+  .header input {
+    font-size: 24px;
+    height: 40px;
+  }
+  .header input[type="date"] {
+    width: 110px;
+  }
 }
 
 img.map {
@@ -67,14 +98,23 @@ button.pastclimbs {
 .climbs .dialog {
   bottom: 40px;
   overflow: auto;
+  background-color: #effdff;
 }
 
 .climbs h3 {
   text-align: start;
 }
 
-.dialog, .dialog input {
+.climbs .title {
+  font-weight: bold;
+}
+
+.dialog, input {
   font-size: 24px;
+}
+
+input.notes {
+  flex-grow: 1;
 }
 
 .log.hidden, .climbs.hidden {
@@ -123,8 +163,7 @@ h2 {
 
 .row input[type="submit"] {
   background: white;
-  font-size: 15px;
-  padding: 7px;
+  padding: 7px 15px;
   border-radius: 7px;
   cursor: pointer;
 }
@@ -138,10 +177,6 @@ h2 {
   border-color: #0096a6;
   border-style: solid;
   border-radius: 5px;
-}
-
-input.notes, input.companions {
-  flex-grow: 1;
 }
 
 /* Colors */
@@ -186,163 +221,164 @@ input.notes, input.companions {
   border-color: #7501bd;
 }
 
+
 /* Number positioning */
 .eighteen {
-  top: 737px;
-  left: 320px;
+  top: 787px;
+  left: 350px;
 }
 
 .nineteen {
-  top: 729px;
-  left: 288px;
+  top: 779px;
+  left: 318px;
 }
 
 .twenty {
-  top: 700px;
-  left: 270px;
+  top: 750px;
+  left: 300px;
 }
 
 .twentyeight {
-  top: 552px;
-  left: 307px;
+  top: 595px;
+  left: 337px;
 }
 
 .twentynine {
-  top: 543px;
-  left: 341px;
+  top: 593px;
+  left: 368px;
 }
 
 .thirty {
-  top: 509px;
-  left: 374px;
+  top: 559px;
+  left: 404px;
 }
 
 .thirtyone {
-  top: 473px;
-  left: 400px;
+  top: 523px;
+  left: 430px;
 }
 
 .thirtyfive {
-  top: 233px;
-  left: 270px;
+  top: 283px;
+  left: 297px;
 }
 
 .thirtysix {
-  top: 201px;
-  left: 270px;
+  top: 251px;
+  left: 297px;
 }
 
 .thirtyseven {
-  top: 169px;
-  left: 276px;
+  top: 219px;
+  left: 300px;
 }
 
 .thirtyeight {
-  top: 139px;
-  left: 260px;
+  top: 189px;
+  left: 290px;
 }
 
 .thirtynine {
-  top: 106px;
-  left: 254px;
+  top: 156px;
+  left: 279px;
 }
 
 .forty {
-  top: 70px;
-  left: 280px;
+  top: 112px;
+  left: 310px;
 }
 
 .fortyone {
-  top: 69px;
-  left: 312px;
+  top: 112px;
+  left: 345px;
 }
 
 .fortytwo {
-  top: 100px;
-  left: 340px;
+  top: 150px;
+  left: 370px;
 }
 
 .fortythree {
-  top: 134px;
-  left: 346px;
+  top: 184px;
+  left: 376px;
 }
 
 .fortyfour {
-  top: 168px;
-  left: 351px;
+  top: 218px;
+  left: 381px;
 }
 
 .fortyseven {
-  top: 37px;
-  left: 44px;
+  top: 87px;
+  left: 47px;
 }
 
 .fortyeight {
-  top: 77px;
-  left: 43px;
+  top: 127px;
+  left: 45px;
 }
 
 .fortynine {
-  top: 115px;
-  left: 51px;
+  top: 165px;
+  left: 55px;
 }
 
 .fifty {
-  top: 150px;
-  left: 65px;
+  top: 200px;
+  left: 70px;
 }
 
 .fiftyone {
-  top: 184px;
-  left: 80px;
+  top: 234px;
+  left: 90px;
 }
 
 .fiftytwo {
-  top: 217px;
-  left: 109px;
+  top: 261px;
+  left: 114px;
 }
 
 .fiftythree {
-  top: 240px;
-  left: 138px;
+  top: 282px;
+  left: 145px;
 }
 
 .fiftyfour {
-  top: 273px;
-  left: 154px;
+  top: 314px;
+  left: 164px;
 }
 
 .fiftyfive {
-  top: 306px;
-  left: 152px;
+  top: 350px;
+  left: 164px;
 }
 
 .sixtyfive {
-  top: 500px;
+  top: 550px;
   left: 13px;
 }
 
 .sixtysix {
-  top: 540px;
+  top: 590px;
   left: 13px;
 }
 
 .sixtyseven {
-  top: 581px;
+  top: 631px;
   left: 17px;
 }
 
 .sixtyeight {
-  top: 620px;
+  top: 670px;
   left: 21px;
 }
 
 .sixtynine {
-  top: 660px;
+  top: 710px;
   left: 29px;
 }
 
 .seventy {
-  top: 700px;
+  top: 750px;
   left: 33px;
 }

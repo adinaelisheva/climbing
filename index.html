@@ -13,6 +13,12 @@
 <body>
   <button id="appsWidgetButton"></button>
   <div class="maincontainer">
+    <div class="header">
+      <input type="date" />
+      <div class="companionsContainer">
+        With: <input type="text" class="companions" />
+      </div>
+    </div>
     <img class="map" src="map.png" />
     <button class="eighteen number" id="id18" onclick="openLog(18)">18</button>
     <button class="nineteen number" id="id19" onclick="openLog(19)">19</button>
@@ -57,34 +63,25 @@
   <div class="log hidden">
     <div class="overlay" onclick="closeLog()"></div>
     <div class="dialog">
-      <div class="daterow"><input type="date" class="date" /></div>
+      <h3 class="title">Route <span class="lognum">XY</span></h3>
       <div class="row">
         <div class="labeledInput">
-          With: <input type="text" class="companions" />
+          Color: <input type="text" class="color" />
         </div>
       </div>
-      <hr />
-      <h3 class="title">Route <span class="lognum">XY</span></h3>
-      <div class="perRouteValues">
-        <div class="row">
-          <div class="labeledInput">
-            Color: <input type="text" class="color" />
-          </div>
+      <div class="row">
+        <div class="labeledInput">
+          Difficulty: 5.<input type="text" class="difficulty" />
         </div>
-        <div class="row">
-          <div class="labeledInput">
-            Difficulty: 5.<input type="text" class="difficulty" />
-          </div>
+      </div>
+      <div class="row">
+        <div class="labeledInput">
+          % climbed: <input type="text" class="pct" />
         </div>
-        <div class="row">
-          <div class="labeledInput">
-            % climbed: <input type="text" class="pct" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="labeledInput">
-            Notes: <input type="text" class="notes" />
-          </div>
+      </div>
+      <div class="row">
+        <div class="labeledInput">
+          Notes: <input type="text" class="notes" />
         </div>
       </div>
       <div class="row">
