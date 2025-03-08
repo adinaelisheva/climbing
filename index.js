@@ -56,20 +56,25 @@ function openLog(routeNum) {
 function closeLog() {
   const routeNum = numSpan.innerText;
   const routeDiv = document.querySelector('#id' + routeNum);
-  const newColor = colorInput.value;
-  const newDiff = difficultyInput.value;
+  
+  // Get the "new" stats but unset them if nothing's changed
+  let newColor = colorInput.value.trim();
+  const curColor = getColorFromClasslist(routeDiv);
+  if (newColor === curColor) {
+    newColor = null;
+  }
+  let newDiff = difficultyInput.value.trim();
+  if (newDiff === logDiv.getAttribute('originalDifficulty')) {
+    newDiff = null;
+  }
   if (newColor) {
-    const curColor = getColorFromClasslist(routeDiv);
-    if (curColor && curColor !== newColor) {
-      routeDiv.classList.remove(curColor);
-    }
+    routeDiv.classList.remove(curColor);
     routeDiv.classList.add(newColor);
   }
   if (newDiff) {
     routeDiv.setAttribute('difficulty', newDiff);
   }
-  if (newColor !== logDiv.getAttribute('originalColor') ||
-      newDiff !== logDiv.getAttribute('originalDifficulty')) {
+  if (newColor || newDiff) {
     updateRoute(routeNum, newColor, newDiff);
   }
   if (companionsInput.value) {
@@ -140,7 +145,7 @@ async function fetchAndUpdateRouteInfo() {
 }
 
 function submitLog() {
-  logClimb(numSpan.innerText, dateInput.value, pctInput.value, colorInput.value, difficultyInput.value, companionsInput.value, notesInput.value);
+  logClimb(numSpan.innerText, dateInput.value, pctInput.value, colorInput.value.trim(), difficultyInput.value.trim(), companionsInput.value, notesInput.value);
   addClimbToClimbsDialog();
   closeLog();
 }
@@ -152,7 +157,7 @@ function addClimbToClimbsDialog() {
     const nextSibling = document.querySelector('.climbs .dialog > div');
     nextSibling.parentNode.insertBefore(container, nextSibling);
   }
-  createAndAppendClimb(container, colorInput.value, difficultyInput.value, numSpan.innerText, pctInput.value, notesInput.value);
+  createAndAppendClimb(container, colorInput.value.trim(), difficultyInput.value.trim(), numSpan.innerText, pctInput.value, notesInput.value);
 }
 
 function updateRoute(routenum, color, difficulty) {
@@ -212,8 +217,9 @@ async function hitEndpoint(endpoint, body) {
   } catch {}
   if (error) {
     console.log(`Server Error: ${error}`);
+  } else {
+    // console.log(responseBody);
   }
-  // console.log(responseBody);
   return responseBody;
 }
 
