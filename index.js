@@ -119,14 +119,22 @@ function createClimbsDateContainer(date, companions) {
 }
 
 function createAndAppendClimb(container, color, difficulty, routenum, pct, notes) {
+  const d = document.createElement('div');
+  if (pct === 0) {
+    d.classList.add('note');
+    const s0 = document.createElement('span');
+    s0.innerText = "Note: ";
+    d.appendChild(s0);
+  }
   const s = document.createElement('span');
   s.classList.add('title');
   s.classList.add(color);
-  s.innerText = `${routenum} (5.${difficulty})`;
-  const d = document.createElement('div');
+  s.innerText = `${routenum} (5.${difficulty}${isTall(routenum) ? 'T' : ''})`;
   d.appendChild(s);
   const s2 = document.createElement('span');
-  s2.innerText = `: ${pct}%`;
+  if (pct > 0) {
+    s2.innerText = `: ${pct}%`;
+  }
   if (notes) {
     s2.innerText += ` - ${notes}`;
   }
@@ -177,8 +185,8 @@ function updateRoute(routenum, color, difficulty) {
 }
 
 function logClimb(routenum, date, pct, color, difficulty, companions, notes) {
-  if (!routenum || !date || !pct || !color || !difficulty) {
-    console.log(`routenum (${routenum}), date (${date}), pct (${pct}), color (${color}), and difficulty (${difficulty}) must all be defined to log a climb`);
+  if (!routenum || !date || !color || !difficulty) {
+    console.log(`routenum (${routenum}), date (${date}), color (${color}), and difficulty (${difficulty}) must all be defined to log a climb`);
     return;
   }
   let body = `routenum=${routenum}&date=${date}&pct=${pct}&color=${color}&difficulty=${difficulty}`;
@@ -221,6 +229,10 @@ async function hitEndpoint(endpoint, body) {
     // console.log(responseBody);
   }
   return responseBody;
+}
+
+function isTall(routenum) {
+  return document.querySelector(`#id${routenum}`).classList.contains('tall');
 }
 
 function getColorFromClasslist(div) {

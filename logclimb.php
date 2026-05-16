@@ -24,7 +24,7 @@
   if (isset($_POST["pct"])) {
     $pct = $_POST["pct"];
   }
-  if (empty($pct)) die('{"Error":"pct cannot be empty"}');
+  if (empty($pct)) $pct = 0;
   if (isset($_POST["color"])) {
     $color = mysqli_real_escape_string($db, $_POST["color"]);
   }
