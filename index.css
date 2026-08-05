@@ -179,6 +179,15 @@ h2 {
   border-radius: 5px;
 }
 
+.tall {
+  border-style: double;
+  border-width: 4px;
+}
+
+.note {
+  font-style: italic;
+}
+
 /* Colors */
 
 .yellow {
@@ -229,12 +238,12 @@ h2 {
 }
 
 .nineteen {
-  top: 779px;
+  top: 775px;
   left: 318px;
 }
 
 .twenty {
-  top: 750px;
+  top: 745px;
   left: 300px;
 }
 
@@ -244,8 +253,8 @@ h2 {
 }
 
 .twentynine {
-  top: 593px;
-  left: 368px;
+  top: 588px;
+  left: 373px;
 }
 
 .thirty {
