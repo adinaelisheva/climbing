@@ -24,6 +24,11 @@ function setup() {
   if (companionsCookie) {
     companionsInput.value = companionsCookie;
   }
+  companionsInput.addEventListener('change', () => {
+    if (companionsInput.value) {
+      document.cookie = `companions=${companionsInput.value};max-age=21600`; // 6 hours 
+    }
+  })
 }
 
 async function fetchAndAddCompanionsToSuggestions() {
@@ -87,9 +92,6 @@ function closeLog() {
   }
   if (newColor || newDiff) {
     updateRoute(routeNum, newColor, newDiff);
-  }
-  if (companionsInput.value) {
-    document.cookie = `companions=${companionsInput.value};max-age=21600`; // 6 hours 
   }
   logDiv.classList.add('hidden');
   const inputsToReset = logDiv.querySelectorAll('input:not([type="submit"])');
