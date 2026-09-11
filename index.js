@@ -4,6 +4,7 @@ function setup() {
   fetchAndUpdateRouteInfo();
   fetchAndUpdateClimbs();
   fetchAndAddCompanionsToSuggestions();
+  fetchAndAddColorsToSuggestions();
 
   climbsDiv = document.querySelector('.climbs');
 
@@ -35,6 +36,16 @@ async function fetchAndAddCompanionsToSuggestions() {
   const companions = await fetchEndpoint('fetchcompanions');
   const datalist = document.querySelector('#pastcompanions');
   for (const c of companions) {
+    const opt = document.createElement('option');
+    opt.setAttribute('value', c);
+    datalist.appendChild(opt);
+  }
+}
+
+async function fetchAndAddColorsToSuggestions() {
+  const colors = await fetchEndpoint('fetchcolors');
+  const datalist = document.querySelector('#colors');
+  for (const c of colors) {
     const opt = document.createElement('option');
     opt.setAttribute('value', c);
     datalist.appendChild(opt);
