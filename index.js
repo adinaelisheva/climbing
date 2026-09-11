@@ -1,4 +1,4 @@
-let climbsDiv, logDiv, numSpan, dateInput, colorInput, difficultyInput, pctInput, companionsInput, notesInput;
+let climbsDiv, colorChart, logDiv, numSpan, dateInput, colorInput, difficultyInput, pctInput, companionsInput, notesInput;
 
 function setup() {
   fetchAndUpdateRouteInfo();
@@ -7,6 +7,7 @@ function setup() {
   fetchAndAddColorsToSuggestions();
 
   climbsDiv = document.querySelector('.climbs');
+  colorChart = document.querySelector('.colorChart');
 
   const headerDiv = document.querySelector('.header');
   dateInput = headerDiv.querySelector('input[type="date"]');
@@ -50,6 +51,14 @@ async function fetchAndAddColorsToSuggestions() {
     opt.setAttribute('value', c);
     datalist.appendChild(opt);
   }
+}
+
+function openColorChart() {
+  colorChart.classList.remove('hidden');
+}
+
+function closeColorChart() {
+  colorChart.classList.add('hidden');
 }
 
 function openClimbs() {
@@ -229,7 +238,7 @@ async function fetchEndpoint(endpoint, body) {
 }
 
 async function hitEndpoint(endpoint, body) {
-  console.log(`fetching ${endpoint} with ${body}`);
+  console.log(`fetching ${endpoint} with ${body ? body : 'no payload'}`);
   if (body) {
     body = body.replaceAll('+', '%2B');
   }

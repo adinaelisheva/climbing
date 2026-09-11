@@ -55,7 +55,26 @@
     <button class="sixtynine number tall" id="id69" onclick="openLog(69)">69</button>
     <button class="seventy number tall" id="id70" onclick="openLog(70)">70</button>
   </div>
-  <button class="pastclimbs" onclick="openClimbs()">Past climbs + notes</button>
+  <div class="bottomButtonRow">
+    <button onclick="openColorChart()">Color chart</button>
+    <button class="pastclimbs" onclick="openClimbs()">Past climbs + notes</button>
+  </div>
+  <div class="colorChart hidden">
+    <div class="overlay" onclick="closeColorChart()"></div>
+    <div class="dialog">
+      <h2 class="title">Color Correspondences</h2>
+      <div class="colorRange yellow">5.6 to 5.9</div>
+      <div class="colorRange red">5.7 to 5.10-</div>
+      <div class="colorRange green">5.9 to 5.10</div>
+      <div class="colorRange purple">5.10- to 5.10+</div>
+      <div class="colorRange orange">5.10 to 5.11-</div>
+      <div class="colorRange black">5.10+ to 5.11+</div>
+      <div class="colorRange blue">5.11- to 5.12-</div>
+      <div class="colorRange pink">5.11 to 5.12</div>
+      <div class="colorRange white">5.12 to 5.13+</div>
+      </div>
+    </div>
+  </div>
   <div class="climbs hidden">
     <div class="overlay" onclick="closeClimbs()"></div>
     <div class="dialog">
